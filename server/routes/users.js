@@ -1,11 +1,10 @@
-import Router from "koa-router";
+import Router from 'koa-router'
 
-const users = Router();
+const users = Router()
+users.prefix('/users')
 
-users.prefix("/users");
+users.get('/', async (ctx, next) => {
+  ctx.body = 'akflj'
+})
 
-users.get("/", async (ctx, next) => {
-  ctx.body = "akflj";
-});
-
-export default users;
+export default users
