@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 import sequlize from '../sequlize.js'
-import UserModel from './user.js'
+import { UserModel } from './user.js'
 
 const BlogModel = sequlize.define('blog', {
   title: {
@@ -24,4 +24,4 @@ BlogModel.belongsTo(UserModel, {
 UserModel.hasMany(BlogModel, {
   foreignKey: 'userId',
 })
-export default BlogModel
+export { BlogModel }

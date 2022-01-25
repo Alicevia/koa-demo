@@ -16,4 +16,4 @@ const UserModel = sequlize.define('user', {
   },
 })
 
-export default UserModel
+export { UserModel }

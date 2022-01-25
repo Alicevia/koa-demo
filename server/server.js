@@ -20,5 +20,9 @@ app.use(KoaLogger())
 app.use(KoaStatic(`${path.resolve()}/server/public`))
 
 app.use(users.routes(), users.allowedMethods())
+app.on('error', (err, ctx) => {
+  console.error('server', err, ctx)
+})
 dbInit()
+
 export default app
