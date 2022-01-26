@@ -4,9 +4,14 @@ import onerror from 'koa-onerror'
 import bodyparser from 'koa-bodyparser'
 import KoaLogger from 'koa-logger'
 import KoaStatic from 'koa-static'
+import session from 'koa-generic-session'
+import redisStore from 'koa-redis'
 import path from 'path'
 import users from './routes/users.js'
 import dbInit from './db/index.js'
+import { REDIS_CONF } from './config/db.js'
+
+dbInit()
 
 const app = new Koa()
 onerror(app)
@@ -20,9 +25,22 @@ app.use(KoaLogger())
 app.use(KoaStatic(`${path.resolve()}/server/public`))
 
 app.use(users.routes(), users.allowedMethods())
+app.use(
+  session({
+    key: 'weibo.sid',
+    prefix: 'weibo:sess:',
+    cookie: {
+      path: '/',
+      httpOnly: true,
+      maxAge: 24 * 3600 * 1000,
+    },
+    store: redisStore({
+      all: `${REDIS_CONF.host}:${REDIS_CONF.host}`,
+    }),
+  })
+)
 app.on('error', (err, ctx) => {
   console.error('server', err, ctx)
 })
-dbInit()
 
 export default app

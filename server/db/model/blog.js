@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize'
 import sequlize from '../sequlize.js'
-import { UserModel } from './user.js'
 
 const BlogModel = sequlize.define('blog', {
   title: {
@@ -17,11 +16,4 @@ const BlogModel = sequlize.define('blog', {
   },
 })
 
-// blogModel 下的userId属于userModel的id
-BlogModel.belongsTo(UserModel, {
-  foreignKey: 'userId',
-})
-UserModel.hasMany(BlogModel, {
-  foreignKey: 'userId',
-})
 export { BlogModel }
