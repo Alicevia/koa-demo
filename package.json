@@ -5,11 +5,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon bin/www.js"
+    "devs": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon bin/www.js",
+    "tests": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
+
+    "dev":"vite --config ./client/vite.config.js",
+    "build":"vite build --config ./client/vite.config.js",
+    "preview":"vite --config ./client/vite.config.js preview"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.25.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-vue": "^8.3.0",
     "koa": "^2.13.4",
@@ -22,15 +28,23 @@
     "koa-router": "^10.1.1",
     "koa-static": "^5.0.0",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.14.0"
+    "naive-ui": "^2.24.7",
+    "pinia": "^2.0.11",
+    "redis": "^4.0.2",
+    "sequelize": "^6.14.0",
+    "vue": "^3.2.29",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^2.1.0",
     "cross-env": "^7.0.3",
     "eslint": "8.7.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
     "nodemon": "^2.0.15",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "vite": "^2.7.13"
   }
 }
